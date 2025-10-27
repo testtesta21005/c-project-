@@ -20,8 +20,8 @@ local playerGui = player:WaitForChild("PlayerGui")
 local toggleCallbacks = {}
 local sliderCallbacks = {}
 local uiElements = {}
-TestHub.currentTab = nil
-TestHub.tabs = {}
+local currentTab = nil
+local tabs = {}
 
 local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled
 
@@ -356,7 +356,7 @@ local function CreateTab(parent, name, icon, contentContainer)
     RightLayout.Parent = RightColumn
 
     TabButton.MouseButton1Click:Connect(function()
-        for _, tab in pairs(TestHub.tabs) do
+        for _, tab in pairs(tabs) do
             tab.Button.BackgroundColor3 = TestHub.Config.BackgroundColor
             tab.Button.TextColor3 = Color3.fromRGB(200, 200, 200)
             tab.Content.Visible = false
@@ -1427,7 +1427,7 @@ function TestHub:UpdateAllColors(TitleLabel, HubIcon, MobileToggleButton)
         end
     end
     
-    for name, tab in pairs(TestHub.tabs) do
+    for name, tab in pairs(tabs) do
         tab.LeftColumn.ScrollBarImageColor3 = TestHub.Config.DefaultColor
         tab.RightColumn.ScrollBarImageColor3 = TestHub.Config.DefaultColor
         
